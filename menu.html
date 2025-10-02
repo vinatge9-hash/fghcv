@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang='it'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Menu | Caffè Delizia</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#6f4e37', secondary: '#D2B48C' } } } }
+  </script>
+  <style> html{ scroll-behavior: smooth; } .animate-fadeIn{ animation: fadeIn 0.6s ease-out forwards; } @keyframes fadeIn{ from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }</style>
+</head>
+<body class='font-sans antialiased'>
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Caffè Delizia</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary'>Home</a>
+          <a href='about.html' class='hover:text-primary'>Chi Siamo</a>
+          <a href='menu.html' class='hover:text-primary'>Menu</a>
+          <a href='visit.html' class='hover:text-primary'>Dove Siamo</a>
+          <a href='contact.html' class='hover:text-primary'>Contatti</a>
+          <a href='newsletter.html' class='hover:text-primary'>Newsletter</a>
+        </div>
+        <button id='mobile-menu-btn' class='md:hidden'>
+          <svg class='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/>
+          </svg>
+        </button>
+      </div>
+      <div id='mobile-menu' class='hidden md:hidden pt-4 pb-2'>
+        <a href='index.html' class='block py-2'>Home</a>
+        <a href='about.html' class='block py-2'>Chi Siamo</a>
+        <a href='menu.html' class='block py-2'>Menu</a>
+        <a href='visit.html' class='block py-2'>Dove Siamo</a>
+        <a href='contact.html' class='block py-2'>Contatti</a>
+        <a href='newsletter.html' class='block py-2'>Newsletter</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class='pt-28'>
+    <section class='text-center animate-fadeIn'>
+      <h1 class='text-4xl font-bold'>Il Menu di Caffè Delizia</h1>
+      <p class='text-gray-700 mt-2'>Scopri le nostre miscele, tè e dolci artigianali.</p>
+    </section>
+  </header>
+
+  <main class='py-12'>
+    <section class='container mx-auto px-6'>
+      <div id='menu-container' class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'></div>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-6 mt-6'>
+    <div class='container mx-auto px-6 text-center'>© 2025 Caffè Delizia</div>
+  </footer>
+
+  <script>
+    const MenuData = [
+      {
+        categoria: 'Bevande calde',
+        items: [
+          { nome: 'Espresso', prezzo: '€1.50', descr: 'Ristretto intenso con crema dorata.' },
+          { nome: 'Cappuccino', prezzo: '€2.80', descr: 'Espresso lungo con latte cremato e schiuma.' },
+          { nome: 'Latte Macchiato', prezzo: '€3.20', descr: 'Latte caldo con una macchia di espresso.' }
+        ]
+      },
+      {
+        categoria: 'Bevande fredde',
+        items: [
+          { nome: 'Cold Brew', prezzo: '€3.50', descr: 'Caffè freddo concentrato, morbido e rinfrescante.' },
+          { nome: 'Iced Latte', prezzo: '€3.20', descr: 'Latte freddo, espresso e ghiaccio.' }
+        ]
+      },
+      {
+        categoria: 'Dolci & Pasticceria',
+        items: [
+          { nome: 'Croissant Burro', prezzo: '€2.10', descr: 'Croissant appena sfornato, burro puro.' },
+          { nome: 'Muffin Limone', prezzo: '€2.80', descr: 'Muffin soffice con scorza di limone.' }
+        ]
+      }
+    ];
+
+    function renderMenu() {
+      const container = document.getElementById('menu-container');
+      MenuData.forEach(section => {
+        const block = document.createElement('div');
+        block.className = 'rounded-xl bg-white p-6 shadow';
+        const header = document.createElement('h3');
+        header.className = 'text-xl font-semibold mb-3';
+        header.textContent = section.categoria;
+        block.appendChild(header);
+        const ul = document.createElement('ul');
+        ul.className = 'space-y-4';
+        section.items.forEach(it => {
+          const li = document.createElement('li');
+          li.innerHTML = `<div class='flex justify-between items-center'>
+            <span><strong>${it.nome}</strong> <span class='text-gray-500'>&nbsp;•&nbsp;${it.descr}</span></span>
+            <span class='font-semibold'>${it.prezzo}</span>
+          </div>`;
+          ul.appendChild(li);
+        });
+        block.appendChild(ul);
+        container.appendChild(block);
+      });
+    }
+
+    renderMenu();
+
+    // Mobile menu button
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Smooth anchor (if any)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e){ e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+    });
+  </script>
+</body>
+</html>
