@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang='it'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Benvenuti da Caffè Delizia | Caffetteria</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6f4e37',
+            secondary: '#D2B48C',
+            accent: '#8B5E3C'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class='font-sans antialiased'>
+  <!-- Navigation -->
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Caffè Delizia</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary transition'>Home</a>
+          <a href='about.html' class='hover:text-primary transition'>Chi Siamo</a>
+          <a href='menu.html' class='hover:text-primary transition'>Menu</a>
+          <a href='visit.html' class='hover:text-primary transition'>Dove Siamo</a>
+          <a href='contact.html' class='hover:text-primary transition'>Contatti</a>
+          <a href='newsletter.html' class='hover:text-primary transition'>Newsletter</a>
+        </div>
+        <button id='mobile-menu-btn' class='md:hidden'>
+          <svg class='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/>
+          </svg>
+        </button>
+      </div>
+      <div id='mobile-menu' class='hidden md:hidden pt-4 pb-2'>
+        <a href='index.html' class='block py-2 hover:text-primary'>Home</a>
+        <a href='about.html' class='block py-2 hover:text-primary'>Chi Siamo</a>
+        <a href='menu.html' class='block py-2 hover:text-primary'>Menu</a>
+        <a href='visit.html' class='block py-2 hover:text-primary'>Dove Siamo</a>
+        <a href='contact.html' class='block py-2 hover:text-primary'>Contatti</a>
+        <a href='newsletter.html' class='block py-2 hover:text-primary'>Newsletter</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class='pt-24'>
+    <section class='relative h-screen flex items-center justify-center bg-gradient-to-br from-primary to-secondary'>
+      <div class='absolute inset-0 bg-black opacity-40'></div>
+      <div class='relative z-10 text-center text-white px-6 animate-fadeIn'>
+        <h1 class='text-5xl md:text-7xl font-bold mb-6'>Benvenuti da Caffè Delizia</h1>
+        <p class='text-xl md:text-2xl mb-8 max-w-2xl mx-auto'>Dove ogni chicco racconta una storia. Miscele selezionate, tostatura artigianale e un momento di relax in ogni tazza.</p>
+        <div class='space-x-4'>
+          <a href='menu.html' class='inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-opacity-90 transition'>Scopri il Menu</a>
+          <a href='visit.html' class='inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition'>Trova la nostra sede</a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class='py-20'>
+    <!-- Sezione Esempi bevande + immagini -->
+    <section class='container mx-auto px-6 text-center' aria-label='Selezione caffè'>
+      <h2 class='text-3xl font-bold mb-6'>Le nostre specialità</h2>
+      <p class='max-w-2xl mx-auto text-gray-700 mb-8'>Selezione di caffè, tè e dolci per accompagnare ogni momento della giornata.</p>
+      <div class='grid md:grid-cols-3 gap-6'>
+        <figure class='rounded-xl overflow-hidden shadow-lg'>
+          <img src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=60' alt='Espresso in tazza con crema' class='w-full h-48 object-cover'>
+          <figcaption class='p-3'>Espresso intenso con crema dorata</figcaption>
+        </figure>
+        <figure class='rounded-xl overflow-hidden shadow-lg'>
+          <img src='https://images.unsplash.com/photo-1526312426763-00304b8e64e?auto=format&fit=crop&w=800&q=60' alt='Cappuccino con latte art' class='w-full h-48 object-cover'>
+          <figcaption class='p-3'>Cappuccino vellutato con latte art</figcaption>
+        </figure>
+        <figure class='rounded-xl overflow-hidden shadow-lg'>
+          <img src='https://images.unsplash.com/photo-1495472234291-10f1a6f5a9e8?auto=format&fit=crop&w=800&q=60' alt='Interni accoglienti della caffetteria' class='w-full h-48 object-cover'>
+          <figcaption class='p-3'>Ambiente accogliente e rilassante</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Iscrizione newsletter -->
+    <section class='bg-gray-100 py-14 mt-10'>
+      <div class='container mx-auto px-6 text-center'>
+        <h2 class='text-3xl font-bold mb-4'>Iscriviti alla Newsletter</h2>
+        <p class='mb-6 text-gray-700'>Ricevi aggiornamenti su nuove miscele, eventi in negozio e offerte esclusive.</p>
+        <form id='newsletter-form' class='flex flex-wrap justify-center gap-4'>
+          <input type='email' placeholder='Inserisci la tua email' required
+                 class='w-full md:w-auto px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary'>
+          <button type='submit' class='bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition'>Iscriviti</button>
+        </form>
+        <div id='newsletter-msg' class='mt-4 text-green-700' aria-live='polite'></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6'>
+      <div class='grid md:grid-cols-3 gap-8'>
+        <div>
+          <h4 class='font-semibold mb-2'>Caffè Delizia</h4>
+          <p class='text-gray-400'>Dal chicco alla tazza, con passione e qualità.</p>
+        </div>
+        <div>
+          <h4 class='font-semibold mb-2'>Links</h4>
+          <ul class='space-y-2 text-gray-400'>
+            <li><a href='index.html' class='hover:text-white'>Home</a></li>
+            <li><a href='menu.html' class='hover:text-white'>Menu</a></li>
+            <li><a href='visit.html' class='hover:text-white'>Dove Siamo</a></li>
+            <li><a href='contact.html' class='hover:text-white'>Contatti</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class='font-semibold mb-2'>Seguici</h4>
+          <div class='flex space-x-4'>
+            <a href='#' aria-label='Instagram' class='text-gray-400 hover:text-white'>IG</a>
+            <a href='#' aria-label='Facebook' class='text-gray-400 hover:text-white'>FB</a>
+          </div>
+        </div>
+      </div>
+      <div class='border-t border-gray-800 mt-6 pt-4 text-center text-gray-400'>
+        <p>&copy; 2025 Caffè Delizia. Tutti i diritti riservati.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Menu mobile
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Newsletter submission (no backend, just UX)
+    document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('newsletter-msg');
+      msg.textContent = 'Grazie per esserti iscritto! Ti invieremo preferenze e novità.';
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
